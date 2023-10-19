@@ -15,11 +15,19 @@ class Movie
 {
     public $title;
     public $rating;
+    // public $image;
+    public $genre;
+    public $plot;
 
-    function __construct($_title, $_rating)
+
+
+    function __construct($_title, $_rating, $_genre, $_plot)
     {
         $this->title = $_title;
         $this->rating = $_rating;
+        // $this->image = $_image;
+        $this->genre = $_genre;
+        $this->plot = $_plot;
     }
 
     function getTitle()
@@ -31,17 +39,37 @@ class Movie
     {
         return $this->rating;
     }
+
+    function getGenre()
+    {
+        return $this->genre;
+    }
+
+    function getPlot()
+    {
+        return $this->plot;
+    }
+    // function getImage()
+    // {
+    //     return 'https://picsum.photos/200/200?random=' ;
+    // }
 }
 
 $movies = [];
+$loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non pretium libero. Vestibulum auctor vel dui vitae laoreet. Sed in nisl in tortor tristique bibendum. Sed luctus metus ac purus varius.";
 
 array_push(
     $movies,
-    new Movie("Avatar: The Way of Water", 9.4),
-    new Movie("Matrix", 8.0),
-    new Movie("Interstellar", 8.2),
-    new Movie("The Avengers", 8.7)
+    new Movie("Avatar: The Way of Water", 9.4, "Action", $loremIpsum),
+    new Movie("Matrix", 8.0, "Science Fiction", $loremIpsum),
+    new Movie("Interstellar", 8.2, "Sci-Fi", $loremIpsum),
+    new Movie("The Avengers", 8.7, "Action", $loremIpsum),
+    new Movie("The Shawshank Redemption", 9.3, "Drama", $loremIpsum),
+    new Movie("The Godfather", 9.2, "Crime", $loremIpsum),
+    new Movie("The Dark Knight", 9.0, "Action", $loremIpsum),
+    new Movie("Pulp Fiction", 8.9, "Crime", $loremIpsum)
 );
+
 
 // var_dump($movies);
 
@@ -60,42 +88,40 @@ array_push(
 
 <body>
 
-  <header>
-    
-  <div class="container-fluid bg-info" style="height: 60px;">
-        <nav class="navbar navbar-expand-lg navbar-light "> 
-         <h1 class="text-black">My Favourite movies</h1>
-           
-        </nav>
-    </div>
-  </header>
+    <header>
 
-  <main>
-    <div class="container">
-        <div class="row row-cols-4 g-4 mt-2">
-            <?php foreach ($movies as $movie) { ?>
-                <div class="col">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $movie->getTitle(); ?></h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Rating: <?php echo $movie->getRating(); ?></p></li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
+        <div class="container-fluid bg-info" style="height: 60px;">
+            <nav class="navbar navbar-expand-lg navbar-light ">
+                <h1 class="text-black">Movies</h1>
+
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row row-cols-4 g-4 mt-2">
+                <?php foreach ($movies as $movie) { ?>
+                    <div class="col mb-2">
+                        <div class="card" style="width: 18rem;">
+                        <img src="https://picsum.photos/200/200?random" class="card-img-top" alt="poster">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $movie->getTitle(); ?></h5>
+                                <p class="card-text"><?php echo $movie->getPlot(); ?></p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Genre: <?php echo $movie->getGenre(); ?></li>
+                                <li class="list-group-item">Rating: <?php echo $movie->getRating(); ?>
+                                </li>
+                        
+                            </ul>
+                           
                         </div>
                     </div>
-                </div>
-            <?php } ?>
+                <?php } ?>
+            </div>
         </div>
-    </div>
-</main>
+    </main>
 
 
 
