@@ -15,21 +15,32 @@ class Movie {
     public $title;
     public $rating;
 
-    public function __construct($title, $rating) {
-        $this->title = $title;
-        $this->rating = $rating;
+    function __construct($_title, $_rating) {
+        $this->title = $_title;
+        $this->rating = $_rating;
     }
 
-    public function infoMovie() {
-        echo "Title: {$this->title}\n";
-        echo "Rating: {$this->rating}\n";
+    function getTitle() {
+        return $this->title;
+    }
+
+    function getRating() {
+        return $this->rating;
     }
 }
 
-//uso new per creare l'oggetto(definito prima nella classe)
-$movie1 = new Movie("Avatar: The Way of Water", 9.4);
-$movie2 = new Movie("Matrix", 8.0);
+$movies = [];
+
+array_push(
+    $movies,
+    new Movie("Avatar: The Way of Water", 9.4),
+    new Movie("Matrix", 8.0),
+    new Movie("Interstellar", 8.2),
+    new Movie("The Avengers", 8.7)
+);
+
+var_dump($movies);
 
 //stampo richiamando la funzione
-$movie1->infoMovie(); 
-$movie2->infoMovie(); 
+// $movie1->infoMovie(); 
+// $movie2->infoMovie(); 
